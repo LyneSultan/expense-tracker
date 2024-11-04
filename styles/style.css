@@ -12,15 +12,22 @@ body {
   padding: 20px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
 }
 
-form, #filters, #transaction-list {
+form,
+#filters,
+#transaction-list {
   margin-bottom: 20px;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   margin: 5px;
   padding: 8px;
   font-size: 1em;
@@ -32,16 +39,17 @@ button {
 
 table {
   width: 100%;
-  border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #d3dffa;
 }
 
 .actions button {
