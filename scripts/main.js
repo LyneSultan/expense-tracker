@@ -118,3 +118,39 @@ function deleteTransaction(id) {
   displayTransactions();
   updateBudget();
 }
+
+function updateBudget() {
+  const transactions = loadTransactions();
+  let totalIncome = 0;
+  let totalExpense = 0;
+
+  transactions.forEach(transaction => {
+    if (transaction.type === 'income') {
+      totalIncome += transaction.amount;
+    } else if (transaction.type === 'expense') {
+      totalExpense += transaction.amount;
+    }
+  });
+
+  const totalBudget = totalIncome - totalExpense;
+  document.getElementById('total-budget').innerText = `$${totalBudget}`;
+  document.getElementById('income').innerText = `$${totalIncome}`;
+  document.getElementById('expense').innerText = `$${totalExpense}`;
+}
+
+document.getElementById('transaction-form').addEventListener('submit', addTransaction);
+document.getElementById('apply-filters').addEventListener('click', function () {
+  displayTransactions();
+  updateBudget();
+});
+
+document.getElementById('clear-filters').addEventListener('click', function () {
+  document.getElementById('filter-type').value = '';
+  document.getElementById('filter-date').value = '';
+  document.getElementById('min-amount').value = '';
+  document.getElementById('max-amount').value = '';
+  displayTransactions();
+});
+
+displayTransactions();
+updateBudget();
