@@ -83,3 +83,32 @@ function filterTransactions() {
 
   return transactions;
 }
+
+function editTransaction(id) {
+  const transaction = JSON.parse(localStorage.getItem(`transaction_${id}`));
+
+  if (transaction) {
+    document.getElementById('title').value = transaction.title;
+    document.getElementById('amount').value = transaction.amount;
+    document.getElementById('type').value = transaction.type;
+    document.getElementById('date').value = transaction.date;
+    document.getElementById('notes').value = transaction.notes;
+
+    document.getElementById('submit').onclick = function () {
+      transaction.title = document.getElementById('title').value;
+      transaction.amount = parseFloat(document.getElementById('amount').value);
+      transaction.type = document.getElementById('type').value;
+      transaction.date = document.getElementById('date').value;
+      transaction.notes = document.getElementById('notes').value;
+
+      localStorage.removeItem(`transaction_${id}`);
+
+      localStorage.setItem(`transaction_${id}`, JSON.stringify(transaction));
+
+      displayTransactions();
+      updateBudget();
+
+      document.getElementById('transaction-form').reset();
+    };
+  }
+}
