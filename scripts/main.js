@@ -112,3 +112,9 @@ function editTransaction(id) {
     };
   }
 }
+
+function deleteTransaction(id) {
+  localStorage.removeItem(`transaction_${id}`);
+  displayTransactions();
+  updateBudget();
+}
