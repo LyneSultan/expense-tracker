@@ -56,3 +56,30 @@ function displayTransactions() {
     transactionsList.appendChild(row);
   });
 }
+
+function filterTransactions() {
+  const typeFilter = document.getElementById('filter-type').value;
+  const dateFilter = document.getElementById('filter-date').value;
+  const minAmount = parseFloat(document.getElementById('min-amount').value);
+  const maxAmount = parseFloat(document.getElementById('max-amount').value);
+
+  let transactions = loadTransactions();
+
+  if (typeFilter) {
+    transactions = transactions.filter(transaction => transaction.type === typeFilter);
+  }
+
+  if (dateFilter) {
+    transactions = transactions.filter(transaction => transaction.date === dateFilter);
+  }
+
+  if (minAmount) {
+    transactions = transactions.filter(transaction => transaction.amount >= minAmount);
+  }
+
+  if (maxAmount) {
+    transactions = transactions.filter(transaction => transaction.amount <= maxAmount);
+  }
+
+  return transactions;
+}
